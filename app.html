@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
     <title>Music Player</title>
+    <link rel="stylesheet" href="musicplayer.css">
+
 </head>
 <body>
         <div class = musicPlayer>
@@ -11,10 +13,13 @@
             <audio id="audio"></audio>
             <input type="range" id="progressBar" value ="0">
 
+<!--            // this goes to the previus music-->
+<!--            //will be use to pause the music-->
+<!--            // this will be use to go to the next music-->
                 <div class="controls">
-                    <button id="prevMusic">⏪</button>// this goes to the previus music
-                    <button id="pauseMusic">▶️</button>//will be use to pause the music
-                    <button id="nextMusic">⏩</button>// this will be use to go to the next music
+                    <button id="prevMusic">⏪</button>
+                    <button id="pauseMusic">▶️</button>
+                    <button id="nextMusic">⏩</button>
                 </div>
             <input type="range" id="volumeSlider" min="0" max="1" step="0.1" value="1">
         </div>
