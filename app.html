@@ -3,18 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
-    <title>Document</title>
+    <title>Music Player</title>
 </head>
 <body>
+        <div class = musicPlayer>
+            <h2 id="trackTitle">Track Playing</h2>
+            <audio id="audio"></audio>
+            <input type="range" id="progressBar" value ="0">
 
-    <button> View all notes notes</button>
-    
-    <form>
-        <label for="new_note">New Note</label>
-        <input type="text" id="new_note" name="new_note">
-        <input type="submit" value="Submit">
-      </form>
+                <div class="controls">
+                    <button id="prevMusic">⏪</button>// this goes to the previus music
+                    <button id="pauseMusic">▶️</button>//will be use to pause the music
+                    <button id="nextMusic">⏩</button>// this will be use to go to the next music
+                </div>
+            <input type="range" id="volumeSlider" min="0" max="1" step="0.1" value="1">
+        </div>
 
-      <script src="script.js"></script>
+      <script src="app.js"></script>
 </body>
 </html>
