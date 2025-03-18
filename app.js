@@ -1,40 +1,36 @@
-// An array to store items
-let items = [];
+const audio = document.getElementById("audio");
+const progressBar = document.getElementById("progressBar");
+const volumeSlider = document.getElementById("volumeSlider");
+const prevMusic = document.getElementById("prevMusic");
+const nextMusic = document.getElementById("nextMusic");
+const pauseMusic = document.getElementById("pauseMusic");
+const trackTitle = document.getElementById("trackTitle");
 
-// Function to add an item
-function addItem(item) {
-    items.push(item);
-    console.log(`Added: ${item}`);
+const playlist = [
+    {title: "song 1", src:"..."},
+    {title: "song 2", src:"..."},
+    {title: "song 3", src:"..."},
+    {title: "song 4", src:"..."},
+    {title: "song 5", src:"..."},
+    {title: "song 6", src:"..."},
+    {title: "song 7", src:"..."},
+    {title: "song 8", src:"..."},
+    {title: "song 9", src:"..."},
+    {title: "song 10", src:"..."}
+];
+let currentTrack = 0;
+
+function loadTrack(index) {
+    audio.src = playlist[index].src;
+    trackTitle.textContent = playlist[index].title;
+    audio.load();
 }
-
-// Function to remove an item by index
-function removeItem(index) {
-    if (index >= 0 && index < items.length) {
-        const removed = items.splice(index, 1);
-        console.log(`Removed: ${removed[0]}`);
-    } else {
-        console.log("Invalid index. No item removed.");
+pauseMusic.addEventListener("click", () => {
+    if(audio.paused) {
+        audio.play();
+        pauseMusic.textContent = "||";
+    }else{
+        audio.pause();
+        pauseMusic.textContent = "▶️️"; // when we click in the emo
     }
-}
-
-// Function to edit an item at a given index
-function editItem(index, newItem) {
-    if (index >= 0 && index < items.length) {
-        const oldItem = items[index];
-        items[index] = newItem;
-        console.log(`Edited: ${oldItem} changed to ${newItem}`);
-    } else {
-        console.log("Invalid index. No item edited.");
-    }
-}
-
-// Example usage:
-addItem("Apple");
-addItem("Banana");
-console.log("Items:", items);
-
-removeItem(0);
-console.log("Items after removal:", items);
-
-editItem(0, "Orange");
-console.log("Items after edit:", items);
+})
