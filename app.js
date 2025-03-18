@@ -7,10 +7,10 @@ const pauseMusic = document.getElementById("pauseMusic");
 const trackTitle = document.getElementById("trackTitle");
 
 const playlist = [
-    {title: "song 1", src:"..."},
+    {title: "1 cuff-it-wetter 1", src:"music/cuff-it-wetter.mp3"},
     {title: "song 2", src:"..."},
     {title: "song 3", src:"..."},
-    {title: "song 4", src:"..."},
+    {title: "4 cuff-it-wetter 1", src:"music/cuff-it-wetter.mp3"},
     {title: "song 5", src:"..."},
     {title: "song 6", src:"..."},
     {title: "song 7", src:"..."},
@@ -33,4 +33,26 @@ pauseMusic.addEventListener("click", () => {
         audio.pause();
         pauseMusic.textContent = "▶️️"; // when we click in the emo
     }
+});
+//next music
+nextMusic.addEventListener("click", () => {
+    currentTrack = (currentTrack + 1) % playlist.length;
+    loadTrack(currentTrack);
+    audio.play();
+    pauseMusic.textContent = "||";
+
+});
+prevMusic.addEventListener("click", () => {
+    currentTrack = (currentTrack - 1 + playlist.length) % playlist.length;
+    loadTrack(currentTrack);
+    audio.play();
+
+
+})
+
+audio.addEventListener("timeupdate", () => {
+    audio.currentTime = (progressBar / 100) * audio
+
+
+
 })
