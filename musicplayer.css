@@ -5,7 +5,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(90deg, rgb(4, 1, 7) 0%, rgb(100, 6, 145) 44%, rgb(100, 6, 145) 51%, rgb(4, 1, 7) 100%);
+    background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(100,6,145,1) 44%, rgb(100, 6, 145) 51%, rgb(4, 1, 7) 100%);
     color: white;
     margin: 0;
 }
@@ -45,10 +45,80 @@ button:hover{
     background: #fffefe;
 }
 
+button:active {
+    transform: scale(0.95);
+}
+
 input[type="range"] {
     width: 100%;
     margin-top: 10px;
 }
+
+{
+    -webkit-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    background: white;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.menu-icon{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    transition: 0.3s;
+    color: white;
+ }
+ .menu-icon:hover{
+     color: darkorange;
+ }
+
+ .theme-toggle{
+     position: absolute;
+     top: 10px;
+     left: 10px;
+     background: none;
+     border: none;
+     cursor: pointer;
+     font-size: 24px;
+     color: white;
+     transition: 0.3s;
+ }
+ .theme-toggle:hover{
+     color: white;
+ }
+
+ .light-mode{
+     background: white;
+     color: black;
+
+ }
+ .light-mode button{
+     color: white;
+     background:#333;
+ }
+ .light-mode button:hover{
+     background:#555;
+ }
+ .light-mode .theme-toggle{
+     color: black;
+ }
+
+ @media (max-width: 400px){
+     .musicPlayer{
+         width: 90%;
+     }
+ }
+
+
+
+
 
 .albumPhoto {
     width: 200px; 
@@ -57,12 +127,4 @@ input[type="range"] {
     object-fit: cover;
     border: 3px solid white;
 }
-
-
-
-
-
-
-
-
 

@@ -5,8 +5,12 @@ const prevMusic = document.getElementById("prevMusic");
 const nextMusic = document.getElementById("nextMusic");
 const pauseMusic = document.getElementById("pauseMusic");
 const trackTitle = document.getElementById("trackTitle");
-const albumPhoto = document.getElementById("albumPhoto");
 
+const themeToggle = document.getElementById("themeToggle");
+const menuIcon = document.getElementById("menuIcon");
+
+
+const albumPhoto = document.getElementById("albumPhoto");
 const playlist = [
     {title: "1 cuff-it-wetter 1",  src:"music/cuff-it-wetter.mp3", img:"music/img.png"},
     {title: "song 2", src:"...", img: ""}, // need more songss.
@@ -44,6 +48,29 @@ pauseMusic.addEventListener("click", () => {
         pauseMusic.textContent = "▶️️"; // when we click in the emo
     }
 });
+
+if (localStorage.geItem("theme") === "light") {
+    document.body.classList.add("light-mode");
+    themeToggle.textContent = "🌞";
+
+}
+themeToggle.addEventListener("click", () => {
+        document.body.classList.remove("light-mode");
+
+        if (ddocument.body.classList.contains("light-mode")) {
+            localStorage.setItem("theme", "light");
+            themeToggle.textContent = "🔆";
+        } else {
+            localStorage.setItem("theme", "dark");
+            themeToggle.textContent = "🌑";
+        }
+    });
+
+    menuIcon.addEventListener("click", () => {
+        alert("lateral menu")
+    });
+
+
 //next music
 nextMusic.addEventListener("click", () => {
     currentTrack = (currentTrack + 1) % playlist.length;
