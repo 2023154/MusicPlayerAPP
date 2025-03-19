@@ -1,9 +1,11 @@
 body{
+    min-height: 100vh;
+    padding: 20px;
     font-family: Arial, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(100,6,145,1) 44%, rgb(100, 6, 145) 51%, rgb(4, 1, 7) 100%);
+    background: linear-gradient(90deg, rgb(4, 1, 7) 0%, rgb(100, 6, 145) 44%, rgb(100, 6, 145) 51%, rgb(4, 1, 7) 100%);
     color: white;
     margin: 0;
 }
