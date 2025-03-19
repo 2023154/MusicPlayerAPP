@@ -8,10 +8,10 @@ const trackTitle = document.getElementById("trackTitle");
 
 const playlist = [
     {title: "1 cuff-it-wetter 1", src:"music/cuff-it-wetter.mp3"},
-    {title: "song 2", src:"..."},
-    {title: "song 3", src:"..."},
+    {title: "song 2", src:"..."}, // need more songss.
+    {title: "song 3", src:"..."}, // need more songss.
     {title: "4 cuff-it-wetter 1", src:"music/cuff-it-wetter.mp3"},
-    {title: "song 5", src:"..."},
+    {title: "song 5", src:"..."}, // need more songss.
     {title: "song 6", src:"..."},
     {title: "song 7", src:"..."},
     {title: "song 8", src:"..."},
@@ -52,7 +52,16 @@ prevMusic.addEventListener("click", () => {
 
 audio.addEventListener("timeupdate", () => {
     audio.currentTime = (progressBar / 100) * audio
+});
 
 
+progressBar.addEventListener("input", () => {
+    audio.currentTime = (progressBar / 100) * audio.duration;
+});
+volumeSlider.addEventListener("input", () => {
+    audio.volume = volumeSlider.value;
+});
 
+audio.addEventListener("ended", () =>{
+    nextMusic.click();
 })
