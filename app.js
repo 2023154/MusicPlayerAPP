@@ -5,10 +5,11 @@ const prevMusic = document.getElementById("prevMusic");
 const nextMusic = document.getElementById("nextMusic");
 const pauseMusic = document.getElementById("pauseMusic");
 const trackTitle = document.getElementById("trackTitle");
+const albumPhoto = document.getElementById("albumPhoto");
 
 const playlist = [
-    {title: "1 cuff-it-wetter 1", src:"music/cuff-it-wetter.mp3"},
-    {title: "song 2", src:"..."}, // need more songss.
+    {title: "1 cuff-it-wetter 1",  src:"music/cuff-it-wetter.mp3", img:"music/img.png"},
+    {title: "song 2", src:"...", img: ""}, // need more songss.
     {title: "song 3", src:"..."}, // need more songss.
     {title: "4 cuff-it-wetter 1", src:"music/cuff-it-wetter.mp3"},
     {title: "song 5", src:"..."}, // need more songss.
@@ -23,13 +24,22 @@ let currentTrack = 0;
 function loadTrack(index) {
     audio.src = playlist[index].src;
     trackTitle.textContent = playlist[index].title;
+   if (playlist[index].img ) {
+       albumPhoto.src = playlist[index].img;
+   }else{
+       albumPhoto.src =  "music/default.webp";
+   }
+
     audio.load();
 }
 pauseMusic.addEventListener("click", () => {
     if(audio.paused) {
         audio.play();
+
         pauseMusic.textContent = "||";
     }else{
+
+
         audio.pause();
         pauseMusic.textContent = "▶️️"; // when we click in the emo
     }
@@ -44,8 +54,14 @@ nextMusic.addEventListener("click", () => {
 });
 prevMusic.addEventListener("click", () => {
     currentTrack = (currentTrack - 1 + playlist.length) % playlist.length;
+
+
     loadTrack(currentTrack);
+
+
+    albumPhoto.src = playlist[index].img || "music/default.webp";
     audio.play();
+
 
 
 })
