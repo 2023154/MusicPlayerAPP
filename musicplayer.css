@@ -11,7 +11,7 @@ body {
 }
 
 .musicPlayer {
-    background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(100,6,145,1) 44%, rgb(100, 6, 145) 51%, rgb(14, 9, 16) 100%);
+    background: linear-gradient(90deg, rgb(100, 6, 145) 0%, rgb(4, 1, 7) 44%, rgb(14, 9, 16) 51%, rgb(100, 6, 145) 100%);
     padding: 20px;
     border-radius: 10px;
     text-align: center;
