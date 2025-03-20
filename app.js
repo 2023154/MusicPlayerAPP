@@ -6,9 +6,9 @@ const nextMusic = document.getElementById("nextMusic");
 const pauseMusic = document.getElementById("pauseMusic");
 const trackTitle = document.getElementById("trackTitle");
 const albumPhoto = document.getElementById("albumPhoto");
-// const themeToggle = document.getElementById("themeToggle");
+const darkMode = document.getElementById("darkMode");
 // const menuIcon = document.getElementById("menuIcon");
-//
+
 
 
 const playlist = [
@@ -60,6 +60,8 @@ nextMusic.addEventListener("click", () => {
     pauseMusic.textContent = "||";
 
 });
+
+//prevMusic
 prevMusic.addEventListener("click", () => {
     currentTrack = (currentTrack - 1 + playlist.length) % playlist.length;
 
@@ -89,24 +91,27 @@ volumeSlider.addEventListener("input", () => {
 audio.addEventListener("ended", () =>{
     nextMusic.click();
 })
+//darkmode function.
+function toggleTheme(){
 
-if (localStorage.geItem("theme") === "light") {
-    document.body.classList.add("light-mode");
-    themeToggle.textContent = "🌞";
-
-}
-themeToggle.addEventListener("click", () => {
-    document.body.classList.remove("light-mode");
-
-    if (ddocument.body.classList.contains("light-mode")) {
+    //const player = document.getElementsByClassName(".musicPlayer");
+    document.querySelector(".musicPlayer").classList.toggle("light-mode");
+   // document.player.classList.toggle("light-mode");
+    if (document.body.classList.contains("light-mode")){
         localStorage.setItem("theme", "light");
-        themeToggle.textContent = "🔆";
-    } else {
+    }else{
         localStorage.setItem("theme", "dark");
-        themeToggle.textContent = "🌑";
     }
-});
+}
+document.addEventListener("DOMContentLoaded",()=>{
+    const savedTheme = localStorage.getItem("theme");
+    if(savedTheme==="light"){
+        document.body.classList.add("light-mode");
+    }
+}
+)
 
-menuIcon.addEventListener("click", () => {
-    alert("lateral menu")
-});
+//
+// menuIcon.addEventListener("click", () => {
+//     alert("lateral menu")
+// });
