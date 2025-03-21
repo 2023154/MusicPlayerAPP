@@ -120,13 +120,20 @@ menuButton.addEventListener ("click", () =>  {
         .then (response => response.text())
         .then (data => {
             menuOptions.innerHTML = data;
-            menuOptions.style.display = "flex";
+            menuOptions.classList.add = "open";
             menuLoaded = true;
-        });
+        })
+
+        .catch(error => console.error ("Error loading menu", error));
 
     } else {
-        menuOptions.style.display =
-        menuOptions.style.display === "flex" ? "none" : "flex";
-
+        menuOptions.classList.toggle ("open");
     }
 });
+
+window.addEventListener ("click", function (e){
+    if(!menuButton.contains(e.target) && !menuOptions.contains (e.target)) {
+        menuOptionsclassList.remove ("open");
+    }
+
+    });
