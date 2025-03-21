@@ -6,8 +6,6 @@ const nextMusic = document.getElementById("nextMusic");
 const pauseMusic = document.getElementById("pauseMusic");
 const trackTitle = document.getElementById("trackTitle");
 const albumPhoto = document.getElementById("albumPhoto");
-const darkMode = document.getElementById("darkMode");
-// const menuIcon = document.getElementById("menuIcon");
 
 
 
@@ -109,9 +107,4 @@ document.addEventListener("DOMContentLoaded",()=>{
         document.body.classList.add("light-mode");
     }
 }
-)
-
-//
-// menuIcon.addEventListener("click", () => {
-//     alert("lateral menu")
-// });
+);
