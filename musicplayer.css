@@ -156,3 +156,29 @@ input[type="range"] {
         width: 90%;
     }
 }
+
+.menu-options{
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 50px;
+    right: 10px;
+    background:#222;
+    border: 1px solid #555;
+    padding: 10px;
+    border-radius: 8px;
+    z-index: 10;
+}
+
+.menu-options a{
+    color: white;
+    text-decoration: none;
+    padding: 8px;
+    transition: background 0.2s ease;
+
+}
+
+.menu-options a:hoover{
+    background-color: #555;
+
+}
