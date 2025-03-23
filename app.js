@@ -10,6 +10,7 @@ const albumPhoto = document.getElementById("albumPhoto");
 
 
 let playlist = [
+
     {title: "1 cuff-it-wetter 1",  src:"music/cuff-it-wetter.mp3", img:"music/img.png"},
     {title: "song 2", src:"...", img: ""}, // need more songss.
     {title: "song 3", src:"..."}, // need more songss.
@@ -26,6 +27,7 @@ let currentTrack = -1;
 
 
 function loadTrack(index) {
+
     audio.src = playlist[index].src;
     trackTitle.textContent = playlist[index].title;
    if (playlist[index].img ) {
@@ -57,7 +59,7 @@ nextMusic.addEventListener("click", () => {
     pauseMusic.textContent = "||";
 
 });
-currentTrack = 0;
+
 //prevMusic
 prevMusic.addEventListener("click", () => {
 
