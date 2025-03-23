@@ -4,8 +4,12 @@
   "description": "Easy to use MP3 music player.",
   "main": "main.js",
   "scripts": {
+    "start": "electron .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Marcos Oliveira, Renan Castilhos, Ueslei Monteiro, Wanderson L. Ohenes",
-  "license": "ISC"
+  "license": "Free",
+  "devDependencies": {
+    "electron": "^35.0.3"
+  }
 }
