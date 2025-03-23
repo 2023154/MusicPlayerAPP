@@ -9,7 +9,7 @@ const albumPhoto = document.getElementById("albumPhoto");
 
 
 
-const playlist = [
+let playlist = [
     {title: "1 cuff-it-wetter 1",  src:"music/cuff-it-wetter.mp3", img:"music/img.png"},
     {title: "song 2", src:"...", img: ""}, // need more songss.
     {title: "song 3", src:"..."}, // need more songss.
@@ -21,7 +21,9 @@ const playlist = [
     {title: "song 9", src:"..."},
     {title: "song 10", src:"..."}
 ];
-let currentTrack = 0;
+
+let currentTrack = -1;
+
 
 function loadTrack(index) {
     audio.src = playlist[index].src;
@@ -61,26 +63,46 @@ nextMusic.addEventListener("click", () => {
 
 //prevMusic
 prevMusic.addEventListener("click", () => {
+
+    let currentTrack = 0;
     currentTrack = (currentTrack - 1 + playlist.length) % playlist.length;
 
-
     loadTrack(currentTrack);
-
 
     albumPhoto.src = playlist[index].img || "music/default.webp";
     audio.play();
 
-
-
-})
-
-audio.addEventListener("timeupdate", () => {
-    audio.currentTime = (progressBar / 100) * audio
 });
 
 
+// update the time of the audio
+
+document.addEventListener("DOMContentLoaded", () => {
+    const timeAudio =document.getElementById("curTime");
+    audio.addEventListener("timeupdate",()=>{
+
+        // if(audio.duration){
+            progressBar.value = (audio.currentTime / audio.duration) * 100;
+        // }
+
+        const seconds = Math.floor(audio.currentTime);
+        timeAudio.textContent = formatTime(seconds);
+    });
+    function formatTime(seconds) {
+        const mins = Math.floor(seconds / 60);
+        const secs = (seconds % 60).toString().padStart(2, "0");
+        return `${mins}:${secs}`;
+
+    }
+
+ });
+
+//progess bar.
+
 progressBar.addEventListener("input", () => {
-    audio.currentTime = (progressBar / 100) * audio.duration;
+    const value = progressBar.value;
+    const duration = audio.duration || 0;
+    audio.currentTime = (value/100) * duration;
 });
 volumeSlider.addEventListener("input", () => {
     audio.volume = volumeSlider.value;
@@ -112,28 +134,15 @@ document.addEventListener("DOMContentLoaded",()=>{
 const menuButton = document.getElementById ("menuIcon");
 const menuOptions = document.getElementById ("menuOptions");
 
-let menuLoaded = false;
 
-menuButton.addEventListener ("click", () =>  {
-    if (!menuLoaded){
-        fetch ('menu.html')
-        .then (response => response.text())
-        .then (data => {
-            menuOptions.innerHTML = data;
-            menuOptions.classList.add = "open";
-            menuLoaded = true;
-        })
+menuButton.addEventListener ("click", () => {
+    menuOptions.classList.toggle('open');
 
-        .catch(error => console.error ("Error loading menu", error));
 
-    } else {
-        menuOptions.classList.toggle ("open");
-    }
 });
-
-window.addEventListener ("click", function (e){
-    if(!menuButton.contains(e.target) && !menuOptions.contains (e.target)) {
-        menuOptionsclassList.remove ("open");
+document.addEventListener("click", (e) =>{
+    if(!menuOptions.contains(e.target) && ! menuButton.contains(e.target)) {
+        menuOptions.classList.remove ("open");
     }
 
-    });
+})
