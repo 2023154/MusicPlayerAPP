@@ -62,7 +62,8 @@ body {
 button, .login {
     background: #b751fd;
     border: none;
-    padding: 12px;s
+    margin: 10px;
+    padding: 18px;
     cursor: pointer;
     border-radius: 50%;
     font-size: 18px;
@@ -70,7 +71,7 @@ button, .login {
 }
 .login{
     border-radius: 10px;
-    font-family: "Arial Narrow";
+    /*font-family: "Arial Narrow";*/
 }
 button:hover {
     background: #fffefe;
@@ -104,7 +105,7 @@ input[type="range"] {
 }
 
 .menu-icon:hover {
-    color: darkorange;
+    color: #858585;
 }
 
 .darkMode {
@@ -158,25 +159,28 @@ input[type="range"] {
 }
 
 .menu-options{
-    position: fixed;
+    flex-direction: column; /* Empilha os itens verticalmente */
+    display: flex;
+    position: absolute;
+    border-radius: 20px;
     top: 0;
     right: 0;
-    height: 100vh;
+    height: 90vh;
     width:250px;
-    background-color: #222;
-    padding: 30px 20px;
-    box-shadow: -4px 0 15px rgba (0,0,0,0.6);
+    background-color: #878787;
+    padding: 20px;
+    box-shadow: -4px 0 15px rgba(0,0,0.6);
     z-index: 100;
     overflow-y: auto;
     color:white;
-    transform: translateX (100%);
+    transform: translateX(100%);
     transition: transform 0.3s ease;
     pointer-events:none;
     opacity:0;
 }
 
 .menu-options.open{
-    transform:translateX (0);
+    transform:translateX(0);
     pointer-events:auto;
     opacity:1;
 
@@ -187,11 +191,11 @@ input[type="range"] {
     text-decoration:none;
     padding: 15px 10px;
     font-size: 18px;
-    border-bottom: 1px solid #444;
+    border-bottom: 1px solid #ffffff;
     transition: background 0.2s ease;
 }
 
-.menu-options a:hoover{
-    background-color: #444;
+.menu a:hover{
+    background-color: #000000;
 
 }
