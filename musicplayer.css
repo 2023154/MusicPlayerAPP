@@ -1,34 +1,36 @@
-body {
-    min-height: 100vh;
-    padding: 20px;
-    font-family: Arial, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /*background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgb(100, 6, 145) 44%, rgb(100, 6, 145) 51%, rgb(4, 1, 7) 100%);*/
-    color: white;
-    margin: 0;
-}
+/*body {*/
+/*    min-height: 100vh;*/
+/*    padding: 20px;*/
+/*    font-family: Arial, sans-serif;*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*    background: linear-gradient(90deg, rgb(100, 6, 145) 0%, rgb(4, 1, 7) 44%, rgb(14, 9, 16) 51%, rgb(100, 6, 145) 100%);*/
 
-.musicPlayer {
+/*    !*background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgb(100, 6, 145) 44%, rgb(100, 6, 145) 51%, rgb(4, 1, 7) 100%);*!*/
+/*    color: white;*/
+/*    margin: 0;*/
+/*}*/
+
+ body {
     background: linear-gradient(90deg, rgb(100, 6, 145) 0%, rgb(4, 1, 7) 44%, rgb(14, 9, 16) 51%, rgb(100, 6, 145) 100%);
     padding: 20px;
-    border-radius: 20px;
+    /*border-radius: 20px;*/
     text-align: center;
-    height: 90vh; /* Adjust to fit the viewport */
-    width: 375px; /* iPhone standard width */
+    height: 100%; /* Adjust to fit the viewport */
+    width: 100%; /* iPhone standard width */
     max-width: 100%;
-    box-shadow: 0px 0px 15px rgb(223, 164, 14);
-    transition: box-shadow 0.3s ease-in-out;
+    /*box-shadow: 0px 0px 15px rgb(223, 164, 14);*/
+    /*transition: box-shadow 0.3s ease-in-out;*/
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.musicPlayer:hover {
-    box-shadow: 0px 0px 25px rgb(255, 166, 0);
-}
+/*.musicPlayer:hover {*/
+/*    box-shadow: 0px 0px 25px rgb(255, 166, 0);*/
+/*}*/
 .login-edit{
     /*background: linear-gradient(90deg, rgb(100, 6, 145) 0%, rgb(4, 1, 7) 44%, rgb(14, 9, 16) 51%, rgb(100, 6, 145) 100%);*/
     padding: 20px;
