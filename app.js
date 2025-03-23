@@ -49,9 +49,6 @@ pauseMusic.addEventListener("click", () => {
     }
 });
 
-
-
-
 //next music
 nextMusic.addEventListener("click", () => {
     currentTrack = (currentTrack + 1) % playlist.length;
@@ -60,11 +57,11 @@ nextMusic.addEventListener("click", () => {
     pauseMusic.textContent = "||";
 
 });
-
+currentTrack = 0;
 //prevMusic
 prevMusic.addEventListener("click", () => {
 
-    let currentTrack = 0;
+
     currentTrack = (currentTrack - 1 + playlist.length) % playlist.length;
 
     loadTrack(currentTrack);
