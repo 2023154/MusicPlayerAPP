@@ -1,36 +1,29 @@
-/*body {*/
-/*    min-height: 100vh;*/
-/*    padding: 20px;*/
-/*    font-family: Arial, sans-serif;*/
-/*    display: flex;*/
-/*    justify-content: center;*/
-/*    align-items: center;*/
-/*    background: linear-gradient(90deg, rgb(100, 6, 145) 0%, rgb(4, 1, 7) 44%, rgb(14, 9, 16) 51%, rgb(100, 6, 145) 100%);*/
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(90deg, rgb(100, 6, 145) 0%, rgb(0, 0, 0) 44%, rgb(0, 0, 0) 51%, rgb(100, 6, 145) 100%);
+}
 
-/*    !*background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgb(100, 6, 145) 44%, rgb(100, 6, 145) 51%, rgb(4, 1, 7) 100%);*!*/
-/*    color: white;*/
-/*    margin: 0;*/
-/*}*/
+* {
+    box-sizing: border-box;
+}
 
- body {
-    background: linear-gradient(90deg, rgb(100, 6, 145) 0%, rgb(4, 1, 7) 44%, rgb(14, 9, 16) 51%, rgb(100, 6, 145) 100%);
-    padding: 20px;
-    /*border-radius: 20px;*/
-    text-align: center;
-    height: 100%; /* Adjust to fit the viewport */
-    width: 100%; /* iPhone standard width */
+.musicPlayer {
+    width: 100vw;
+    height: 100vh;
     max-width: 100%;
-    /*box-shadow: 0px 0px 15px rgb(223, 164, 14);*/
-    /*transition: box-shadow 0.3s ease-in-out;*/
-    position: relative;
+    max-height: 100%;
+    padding: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 }
 
-/*.musicPlayer:hover {*/
-/*    box-shadow: 0px 0px 25px rgb(255, 166, 0);*/
-/*}*/
 .login-edit{
     /*background: linear-gradient(90deg, rgb(100, 6, 145) 0%, rgb(4, 1, 7) 44%, rgb(14, 9, 16) 51%, rgb(100, 6, 145) 100%);*/
     padding: 20px;
