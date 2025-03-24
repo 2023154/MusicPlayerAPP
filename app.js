@@ -6,38 +6,30 @@ const nextMusic = document.getElementById("nextMusic");
 const pauseMusic = document.getElementById("pauseMusic");
 const trackTitle = document.getElementById("trackTitle");
 const albumPhoto = document.getElementById("albumPhoto");
+const selectFolderButton = document.getElementById("selectFolder");
 
 
+let playlist = [];
+let currentTrack = 0;
 
-let playlist = [
+    
+//function to load and play a track
 
-    {title: "1 cuff-it-wetter 1",  src:"music/cuff-it-wetter.mp3", img:"music/img.png"},
-    {title: "song 2", src:"...", img: ""}, // need more songss.
-    {title: "song 3", src:"..."}, // need more songss.
-    {title: "4 cuff-it-wetter 1", src:"music/cuff-it-wetter.mp3"},
-    {title: "song 5", src:"..."}, // need more songss.
-    {title: "song 6", src:"..."},
-    {title: "song 7", src:"..."},
-    {title: "song 8", src:"..."},
-    {title: "song 9", src:"..."},
-    {title: "song 10", src:"..."}
-];
+function loadTrack(index){
 
-let currentTrack = -1;
-
-
-function loadTrack(index) {
+    if(playlist.length === 0) return;
 
     audio.src = playlist[index].src;
     trackTitle.textContent = playlist[index].title;
-   if (playlist[index].img ) {
-       albumPhoto.src = playlist[index].img;
-   }else{
-       albumPhoto.src =  "music/default.webp";
-   }
+    albumPhoto.src = "music/default.webp"; //default album image
 
     audio.load();
+    audio.play();
+    pauseMusic.textContent = "||";
 }
+
+
+
 pauseMusic.addEventListener("click", () => {
     if(audio.paused) {
         audio.play();
@@ -71,6 +63,17 @@ prevMusic.addEventListener("click", () => {
     albumPhoto.src = playlist[index].img || "music/default.webp";
     audio.play();
 
+});
+
+// Select Folder and Load MP3s
+selectFolderButton.addEventListener("click", async () => {
+    const files = await window.electron.selectFolder();
+
+    if (files && files.length > 0) {
+        playlist = files;
+        currentTrack = 0;
+        loadTrack(currentTrack);
+    }
 });
 
 
