@@ -1,5 +1,6 @@
 const { app, BrowserWindow, dialog, ipcMain } = require('electron');
 const path = require('node:path');
+const mm = require('music-metadata');
 const fs = require ('fs');
 
 let win;
@@ -59,3 +60,32 @@ app.on('window-all-closed', () => {
     app.quit();
   }
 });
+
+
+//extracting music metadata
+
+async function extracAlbumCover(files){
+
+  for(const file of files){
+
+    const filePath = file.src
+
+    try{
+      const metadata = await mm.parseFile(filePath);
+      const picture = metadata.common.picture;
+
+      if (picture.length > 0){
+        const cover = picture[0];
+      
+      }
+      else {
+        console.log('No cover photos found');
+      }
+
+      
+    }
+    catch (error){
+      console.error('App could not extract album cover!')
+    }
+  }
+}
