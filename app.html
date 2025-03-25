@@ -7,53 +7,44 @@
     <link rel="stylesheet" href="musicplayer.css">
 
 </head>
-<body>
+
+<body class="dark-mode">
 
 
+<div class="app-container">
 
-
-        <div id="musicPlayer" class = musicPlayer>
-
+<!--    <h2 id="trackTitle"></h2>-->
+    <button id="DarkMode" onclick="toggleTheme()" class="darkMode"> ☯ </button>
+    <div class="menu-options">
+        <a href="#">Home</a>
+        <a href="#">Library</a>
+        <a href="#">Playlists</a>
+        <a href="#">Settings</a>
+    </div>
+    <div class="musicPlayer">
             <h2 id="trackTitle"></h2>
 
-
-            <button id="DarkMode" onclick="toggleTheme()" class="darkMode"> ☯ </button>
-            <button id="menuIcon"  class="menu-icon">☰</button>
+        <img id="albumPhoto" class="albumPhoto" src="music/default.webp" width="180px"  >
+        <div class="controls">
+            <button id="prevMusic">⏪</button>
+            <button id="pauseMusic">▶️</button>
+            <button id="nextMusic">⏩</button>
             <button id="selectFolder">📂 Select Music Folder</button>
 
-
-            <div id="menuOptions"  class="menu-options">
-
-                <a href="#">Account</a>
-                <a href="#">Library</a>
-                <a href="#">Releases</a>
-                <a href="#">Settings</a>
-
-            </div>
-            <audio id="audio"></audio>
-
-
-            <img id="albumPhoto" class="albumPhoto" src="music/default.webp" width="180px"  >
-            <input type="range" id="volumeSlider" min="0" max="1" step="0.1" value="1">
-
-            <span id="curTime">0:00</span>
-            <input type="range" id="progressBar" value ="0" min="0" max="100">
-
-
-<!--            // this goes to the previus music-->
-<!--            //will be use to pause the music-->
-<!--            // this will be use to go to the next music-->
-                <div class="controls">
-                    <button id="prevMusic">⏪</button>
-                    <button id="pauseMusic">▶️</button>
-                    <button id="nextMusic">⏩</button>
-                </div>
-
-
         </div>
+
+        <audio id="audio"></audio>
+        <input type="range" id="volumeSlider" min="0" max="1" step="0.1" value="1">
+
+        <span id="curTime">0:00</span>
+        <input type="range" id="progressBar" value ="0" min="0" max="100">
+
+    </div>
+</div>
+</body>
 
       <script src="app.js"></script>
 
      
-</body>
+
 </html>

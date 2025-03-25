@@ -4,193 +4,135 @@ html, body {
     height: 100%;
     width: 100%;
     overflow-x: hidden;
-    font-family: Arial, sans-serif;
-    background: linear-gradient(90deg, rgb(100, 6, 145) 0%, rgb(0, 0, 0) 44%, rgb(0, 0, 0) 51%, rgb(100, 6, 145) 100%);
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #1a1a1a;
+    color: #e0e0e0;
 }
 
 * {
     box-sizing: border-box;
 }
 
-.musicPlayer {
-    width: 100vw;
+.app-container {
+    display: flex;
     height: 100vh;
-    max-width: 100%;
-    max-height: 100%;
-    padding: 20px;
-    display: flex;
+    width: 100vw;
+}
+
+/* Menu Section */
+.menu-options {
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.login-edit{
-    /*background: linear-gradient(90deg, rgb(100, 6, 145) 0%, rgb(4, 1, 7) 44%, rgb(14, 9, 16) 51%, rgb(100, 6, 145) 100%);*/
+    display: flex;
+    height: 100%;
+    width: 250px;
+    background-color: #2c2f33;
     padding: 20px;
-    margin: 20px;
-    top: 80px;
-    /*border-radius: 20px;*/
-    /*text-align: center;*/
-    height: 30vh; /* Adjust to fit the viewport */
-    width: 100%; /* iPhone standard width */
-    /*max-width: 100%;*/
-    box-shadow: 0px 0px 15px rgb(133, 133, 133);
-    transition: box-shadow 0.3s ease-in-out;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.input-login{
-    padding: 7px;
-    /*margin: 20px;*/
+    color: white;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
+    overflow-y: auto;
+    transition: all 0.3s ease;
 }
 
-
-.controls {
-    display: flex;
-    justify-content: space-around;
-    margin-top: 20px;
-    width: 100%;
-}
-
-button, .login {
-    background: #b751fd;
-    border: none;
-    margin: 10px;
-    padding: 18px;
-    cursor: pointer;
-    border-radius: 20%; 
+.menu-options a {
+    color: white;
+    text-decoration: none;
+    padding: 15px 10px;
     font-size: 18px;
-    transition: 0.3s;
-}
-.login{
-    border-radius: 10px;
-    /*font-family: "Arial Narrow";*/
-}
-button:hover {
-    background: #fffefe;
+    border-bottom: 1px solid #444;
+    transition: background 0.2s ease;
 }
 
-button:active {
-    transform: scale(0.95);
+.menu-options a:hover {
+    background-color: #444;
 }
 
-input[type="range"] {
-    width: 100%;
-    margin-top: 50px;
-    -webkit-appearance: none;
-    appearance: none;
-    height: 5px;
-    background: #ddd;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.menu-icon {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 24px;
-    transition: 0.3s;
-    color: white;
-}
-
-.menu-icon:hover {
-    color: #858585;
-}
-
-.darkMode {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    font-size: 32px;
-    color: white;
-    transition: 0.3s;
-}
-
-.darkMode:hover {
-    color: darkorange;
-}
-
-.light-mode {
-    background: linear-gradient(90deg, rgb(100, 6, 145) 0%, rgb(255, 255, 255) 44%, rgb(255, 255, 255) 51%, rgb(100, 6, 145) 100%);
-
-    color: black;
-}
-
-.light-mode button {
-    color: white;
-    background: #333;
-}
-
-.light-mode button:hover {
-    background: #555;
-}
-
-.light-mode .theme-toggle {
-    color: black;
+/* Music Player Section */
+.musicPlayer {
+    flex: 1;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #1e1e1e;
 }
 
 .albumPhoto {
     width: 250px;
     height: 250px;
-    border-radius: 50%;
+    border-radius: 10px;
     object-fit: cover;
-    border: 3px solid white;
-    margin: 20px auto;
+    border: 4px solid #999;
+    margin-bottom: 30px;
 }
 
-@media (max-width: 400px) {
-    .musicPlayer {
-        width: 90%;
-    }
-}
-
-.menu-options{
-    flex-direction: column; /* Empilha os itens verticalmente */
+.controls {
     display: flex;
-    position: absolute;
-    border-radius: 20px;
-    top: 0;
-    right: 0;
-    height: 90vh;
-    width:250px;
-    background-color: #878787;
-    padding: 20px;
-    box-shadow: -4px 0 15px rgba(0,0,0.6);
-    z-index: 100;
-    overflow-y: auto;
-    color:white;
-    transform: translateX(100%);
-    transition: transform 0.3s ease;
-    pointer-events:none;
-    opacity:0;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 30px;
+    width: 100%;
 }
 
-.menu-options.open{
-    transform:translateX(0);
-    pointer-events:auto;
-    opacity:1;
-
-}
-
-.menu-options a{
+button, .login {
+    background: #4b8bff;
     color: white;
-    text-decoration:none;
-    padding: 15px 10px;
-    font-size: 18px;
-    border-bottom: 1px solid #ffffff;
-    transition: background 0.2s ease;
+    border: none;
+    padding: 15px 20px;
+    cursor: pointer;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: background 0.3s;
 }
 
-.menu a:hover{
-    background-color: #000000;
+button:hover {
+    background: #367be5;
+}
 
+.darkMode, .menu-icon {
+    font-size: 28px;
+    background: none;
+    border: none;
+    color: white;
+    position: absolute;
+    right: 100px;
+    top: 10px;
+    cursor: pointer;
+}
+
+.darkMode {
+    right: 0px;
+}
+
+.menu-icon {
+    right: 10px;
+}
+
+/* Light Mode */
+.light-mode {
+    background-color: #f2f2f2;
+    color: #1a1a1a;
+}
+
+.light-mode .musicPlayer {
+    background-color: #ffffff;
+}
+
+.light-mode button {
+    background-color: #222;
+    color: white;
+}
+
+.light-mode button:hover {
+    background-color: #444;
+}
+
+.light-mode .menu-options {
+    background-color: #e0e0e0;
+    color: black;
+}
+
+.light-mode .menu-options a {
+    color: black;
+    border-bottom: 1px solid #aaa;
 }
