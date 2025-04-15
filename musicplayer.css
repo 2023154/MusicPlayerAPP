@@ -4,9 +4,10 @@ html, body {
     height: 100%;
     width: 100%;
     overflow-x: hidden;
-    font-family: 'Segoe UI', sans-serif;
-    background-color: #1a1a1a;
-    color: #e0e0e0;
+    font-family: 'Roboto', sans-serif;
+    background-color: #121212;
+    color: #f0f0f0;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 * {
@@ -21,97 +22,151 @@ html, body {
 
 /* Menu Section */
 .menu-options {
-    flex-direction: column;
     display: flex;
+    flex-direction: column;
     height: 100%;
-    width: 250px;
-    background-color: #2c2f33;
+    width: 240px;
+    background-color: #1f1f1f;
     padding: 20px;
-    color: white;
-    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
-    overflow-y: auto;
+    box-shadow: 4px 0 10px rgba(0, 0, 0, 0.5);
     transition: all 0.3s ease;
+    overflow-y: auto;
 }
 
 .menu-options a {
-    color: white;
-    text-decoration: none;
-    padding: 15px 10px;
     font-size: 18px;
-    border-bottom: 1px solid #444;
-    transition: background 0.2s ease;
+    padding: 15px;
+    margin-bottom: 10px;
+    text-decoration: none;
+    color: #ffffff;
+    background: #292929;
+    border-radius: 6px;
+    transition: background 0.3s ease, color 0.3s ease;
 }
 
 .menu-options a:hover {
-    background-color: #444;
+    background: #3b82f6;
+    color: #ffffff;
 }
 
 /* Music Player Section */
 .musicPlayer {
     flex: 1;
-    padding: 40px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    background: #1e1e1e;
+    justify-content: center;
+    padding: 40px;
+    background: #181818;
+}
+
+.musicPlayer h2, .musicPlayer h3, .musicPlayer h4, .musicPlayer h5 {
+    margin: 5px 0;
+    text-align: center;
 }
 
 .albumPhoto {
     width: 250px;
     height: 250px;
-    border-radius: 10px;
+    border-radius: 16px;
     object-fit: cover;
-    border: 4px solid #999;
-    margin-bottom: 30px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    margin-bottom: 20px;
+    transition: transform 0.3s ease;
+}
+
+.albumPhoto:hover {
+    transform: scale(1.05);
 }
 
 .controls {
     display: flex;
-    justify-content: center;
-    gap: 30px;
-    margin-top: 30px;
-    width: 100%;
+    gap: 15px;
+    margin-top: 20px;
 }
 
-button, .login {
-    background: #4b8bff;
-    color: white;
+button {
+    padding: 15px;
+    font-size: 18px;
     border: none;
-    padding: 15px 20px;
-    cursor: pointer;
     border-radius: 8px;
-    font-size: 16px;
-    transition: background 0.3s;
+    background: #3b82f6;
+    color: #ffffff;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
 }
 
 button:hover {
-    background: #367be5;
+    background: #2563eb;
+    transform: translateY(-2px);
 }
 
-.darkMode, .menu-icon {
-    font-size: 28px;
-    background: none;
-    border: none;
-    color: white;
-    position: absolute;
-    right: 100px;
-    top: 10px;
+button:active {
+    transform: translateY(1px);
+}
+
+#volumeSlider, #progressBar {
+    width: 100%;
+    max-width: 400px;
+    margin-top: 10px;
+    appearance: none;
+    background: #444;
+    height: 6px;
+    border-radius: 4px;
+    outline: none;
     cursor: pointer;
 }
 
-.darkMode {
-    right: 0px;
+#volumeSlider::-webkit-slider-thumb, #progressBar::-webkit-slider-thumb {
+    appearance: none;
+    width: 14px;
+    height: 14px;
+    background: #3b82f6;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.3s ease;
 }
 
-.menu-icon {
-    right: 10px;
+#volumeSlider::-webkit-slider-thumb:hover, #progressBar::-webkit-slider-thumb:hover {
+    background: #2563eb;
+}
+
+/* Dark Mode Toggle */
+.darkMode {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    font-size: 24px;
+    background: none;
+    border: none;
+    color: #ffffff;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.darkMode:hover {
+    transform: rotate(90deg);
 }
 
 /* Light Mode */
 .light-mode {
-    background-color: #f2f2f2;
-    color: #1a1a1a;
+    background-color: #f9f9f9;
+    color: #121212;
+}
+
+.light-mode .menu-options {
+    background-color: #ffffff;
+    box-shadow: 4px 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.light-mode .menu-options a {
+    background: #f0f0f0;
+    color: #121212;
+}
+
+.light-mode .menu-options a:hover {
+    background: #3b82f6;
+    color: #ffffff;
 }
 
 .light-mode .musicPlayer {
@@ -119,20 +174,18 @@ button:hover {
 }
 
 .light-mode button {
-    background-color: #222;
-    color: white;
+    background: #1f2937;
+    color: #ffffff;
 }
 
 .light-mode button:hover {
-    background-color: #444;
+    background: #374151;
 }
 
-.light-mode .menu-options {
-    background-color: #e0e0e0;
-    color: black;
+.light-mode #volumeSlider, .light-mode #progressBar {
+    background: #ccc;
 }
 
-.light-mode .menu-options a {
-    color: black;
-    border-bottom: 1px solid #aaa;
+.light-mode #volumeSlider::-webkit-slider-thumb, .light-mode #progressBar::-webkit-slider-thumb {
+    background: #3b82f6;
 }
