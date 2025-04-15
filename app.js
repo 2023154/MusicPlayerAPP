@@ -15,13 +15,17 @@ let currentTrack = 0;
     
 //function to load and play a track
 
-function loadTrack(index){
+async function loadTrack(index){
 
     if(playlist.length === 0) return;
 
-    audio.src = playlist[index].src;
-    trackTitle.textContent = playlist[index].title;
-    albumPhoto.src = "music/default.webp"; //default album image
+    const track = playlist[index];
+    audio.src = track.src;
+    trackTitle.textContent = track.title;
+    const cover = await window.electron.getAlbumCover(track.src);
+    albumPhoto.src = cover || "music/default.webp"; //sets album photo to metadata or to a default image 
+    console.log("album cover src: ", cover);
+     
 
     audio.load();
     audio.play();
@@ -44,23 +48,23 @@ pauseMusic.addEventListener("click", () => {
 });
 
 //next music
-nextMusic.addEventListener("click", () => {
+nextMusic.addEventListener("click", async () => {
     currentTrack = (currentTrack + 1) % playlist.length;
-    loadTrack(currentTrack);
+    await loadTrack(currentTrack);
     audio.play();
     pauseMusic.textContent = "||";
 
 });
 
 //prevMusic
-prevMusic.addEventListener("click", () => {
+prevMusic.addEventListener("click", async () => {
 
 
     currentTrack = (currentTrack - 1 + playlist.length) % playlist.length;
 
     loadTrack(currentTrack);
 
-    albumPhoto.src = playlist[index].img || "music/default.webp";
+    
     audio.play();
 
 });
