@@ -5,6 +5,9 @@ const prevMusic = document.getElementById("prevMusic");
 const nextMusic = document.getElementById("nextMusic");
 const pauseMusic = document.getElementById("pauseMusic");
 const trackTitle = document.getElementById("trackTitle");
+const trackArtist = document.getElementById("trackArtist");
+const trackAlbum = document.getElementById("trackAlbum");
+const trackYear = document.getElementById("trackYear");
 const albumPhoto = document.getElementById("albumPhoto");
 const selectFolderButton = document.getElementById("selectFolder");
 
@@ -21,10 +24,13 @@ async function loadTrack(index){
 
     const track = playlist[index];
     audio.src = track.src;
-    trackTitle.textContent = track.title;
-    const cover = await window.electron.getAlbumCover(track.src);
-    albumPhoto.src = cover || "music/default.webp"; //sets album photo to metadata or to a default image 
-    console.log("album cover src: ", cover);
+    const trackMetadata = await window.electron.getMetadata(track.src);
+    trackTitle.textContent = trackMetadata.title;
+    trackArtist.textContent = trackMetadata.artist;
+    trackAlbum.textContent = trackMetadata.album;
+    trackYear.textContent = trackMetadata.year;
+    albumPhoto.src = trackMetadata.picture || "music/default.webp"; //sets album photo to metadata or to a default image 
+    console.log("album cover src: ", trackMetadata.picture);
      
 
     audio.load();

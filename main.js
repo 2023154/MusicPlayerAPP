@@ -64,30 +64,40 @@ app.on('window-all-closed', () => {
 
 //extracting music metadata
 
-async function extractAlbumCover(filePath) {
+async function extractMetadata(filePath) {
   try {
+    
     const metadata = await mm.parseFile(filePath);
-    const picture = metadata.common.picture;
+    const metadataExtracted = {
+    picture: null,
+    title: metadata.common.title || "Unknown title",
+    artist: metadata.common.artist || "Unknown Artist",
+    album: metadata.common.album || "Unknown Album",
+    year: metadata.common.year || "Unknown Year"
+    };
 
+    const picture = metadata.common.picture;
     if (picture && picture.length > 0) {
       const cover = picture[0];
       const coverPath = path.join(app.getPath('userData'), `${Date.now()}_cover.jpg`);
       
       // Save the image as a file
       fs.writeFileSync(coverPath, cover.data);
-      console.log("Cover saved at:", coverPath);
-      return coverPath; // Return the file path instead of base64
+      console.log("Cover saved at:", coverPath); //console printing for debugging
+       metadataExtracted.picture = coverPath; //returning file path 
     } else {
       console.log("No cover photo found.");
-      return null; // Return null if no cover is found
     }
+
+    return metadataExtracted;
+
   } catch (error) {
-    console.error("Error extracting album cover:", error);
+    console.error("Error extracting metadata:", error);
     return null;
   }
 }
 
-ipcMain.handle("get-album-cover", async (_, filePath) => {
-  return await extractAlbumCover(filePath);
+ipcMain.handle("get-metadata", async (_, filePath) => {
+  return await extractMetadata(filePath);
 });
 

@@ -1,7 +1,7 @@
 const { contextBridge, ipcRenderer } = require("electron");
 
 contextBridge.exposeInMainWorld("electron", {
-    getAlbumCover: (filePath) => ipcRenderer.invoke("get-album-cover", filePath),
+    getMetadata: (filePath) => ipcRenderer.invoke("get-metadata", filePath),
     selectFolder: () => ipcRenderer.invoke("select-folder")
 });
 
