@@ -24,6 +24,8 @@ async function loadTrack(index){
 
     const track = playlist[index];
     audio.src = track.src;
+    connectVisualizer();
+
     const trackMetadata = await window.electron.getMetadata(track.src);
     trackTitle.textContent = trackMetadata.title;
     trackArtist.textContent = trackMetadata.artist;
@@ -171,3 +173,53 @@ document.addEventListener("click", (e) =>{
     }
 
 })
+
+
+// spectrum function
+function connectVisualizer() {// criei uma funcao que eu vou me connectar com o visualizer
+    if (window.audioSource) {
+        window.audioSource.disconnect(); // clean old connection
+    }
+
+    const audioCtx = window.audioCtx || new AudioContext();
+    const analyser = audioCtx.createAnalyser();
+    const source = audioCtx.createMediaElementSource(audio);
+
+    source.connect(analyser);
+    analyser.connect(audioCtx.destination);
+
+    analyser.fftSize = 128;   // 📏 Sets the resolution of the spectrum.
+    //
+    // 64 = lower detail (faster, fewer bars).
+    //
+    // 512 or 1024 = higher detail (more bars).
+
+
+    const bufferLength = analyser.frequencyBinCount;
+    const dataArray = new Uint8Array(bufferLength);
+    const canvas = document.getElementById('visualizer');
+    const ctx = canvas.getContext('2d');
+
+    const WIDTH = canvas.width;
+    const HEIGHT = canvas.height;
+    const barWidth = WIDTH / bufferLength;
+
+    function draw() {
+        requestAnimationFrame(draw);
+        analyser.getByteFrequencyData(dataArray);
+        ctx.clearRect(0, 0, WIDTH, HEIGHT);
+
+        for (let i = 0; i < bufferLength; i++) {
+            const barHeight = dataArray[i] / 2;
+            const x = i * barWidth;
+            ctx.fillStyle = `hsl(${i * 10}, 100%, 50%)`;
+            ctx.fillRect(x, HEIGHT - barHeight, barWidth - 2, barHeight);
+        }
+    }
+
+    draw();
+
+    // Save globally so you can reuse/disconnect
+    window.audioCtx = audioCtx;
+    window.audioSource = source;
+}

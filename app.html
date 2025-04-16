@@ -23,11 +23,11 @@
     </div>
     <div class="musicPlayer">
             <h2 id="trackTitle"></h2>
-            <h3 id="trackArtist"></h2>
-            <h4 id="trackAlbum"></h2>
-            <h5 id="trackYear"></h2>
-
-        <img id="albumPhoto" class="albumPhoto" src="music/default.webp" width="180px"  >
+            <h2 id="trackArtist"></h2>
+            <h2 id="trackAlbum"></h2>
+            <h2 id="trackYear"></h2>
+        <canvas id="visualizer" class="albumPhoto" width="400" height="100"></canvas>
+<!--        <img id="albumPhoto" class="albumPhoto" src="music/default.webp" width="180px"  >-->
         <div class="controls">
             <button id="repeatMusic" title="Toggle Loop">🔁</button>
             <button id="prevMusic">⏪</button>
@@ -39,7 +39,9 @@
         </div>
 
         <audio id="audio" ></audio>
-        <input type="range" id="volumeSlider" min="0" max="1" step="0.1" value="1">
+
+
+                <input type="range" id="volumeSlider" min="0" max="1" step="0.1" value="1">
 
         <span id="curTime">0:00</span>
         <input type="range" id="progressBar" value ="0" min="0" max="100">
@@ -50,6 +52,6 @@
 
       <script src="app.js"></script>
 
-     
+
 
 </html>
