@@ -10,7 +10,7 @@ const trackAlbum = document.getElementById("trackAlbum");
 const trackYear = document.getElementById("trackYear");
 const albumPhoto = document.getElementById("albumPhoto");
 const selectFolderButton = document.getElementById("selectFolder");
-
+const reapeat = document.getElementById("repeatMusic");
 
 let playlist = [];
 let currentTrack = 0;
@@ -74,6 +74,19 @@ prevMusic.addEventListener("click", async () => {
     audio.play();
 
 });
+
+reapeat.addEventListener("click", () => {
+    audio.loop = !audio.loop; // .loop is from js
+
+    if(audio.loop){
+        reapeat.style.backgroundColor = "green";
+        reapeat.title = "looping enable";
+
+    }else{
+        reapeat.style.backgroundColor = "";
+        reapeat.title = "not repeating";
+    }
+})
 
 // Select Folder and Load MP3s
 selectFolderButton.addEventListener("click", async () => {

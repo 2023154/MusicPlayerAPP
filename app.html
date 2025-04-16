@@ -29,14 +29,16 @@
 
         <img id="albumPhoto" class="albumPhoto" src="music/default.webp" width="180px"  >
         <div class="controls">
+            <button id="repeatMusic" title="Toggle Loop">🔁</button>
             <button id="prevMusic">⏪</button>
             <button id="pauseMusic">▶️</button>
             <button id="nextMusic">⏩</button>
+
             <button id="selectFolder">📂 Select Music Folder</button>
 
         </div>
 
-        <audio id="audio"></audio>
+        <audio id="audio" ></audio>
         <input type="range" id="volumeSlider" min="0" max="1" step="0.1" value="1">
 
         <span id="curTime">0:00</span>
