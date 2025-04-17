@@ -64,11 +64,10 @@ repeatMusic.addEventListener("click", () => {
 selectFolderButton.addEventListener("click", async () => {
     const files = await window.electron.selectFolder();
 
-    if (files.files && files.files.length > 0) {
-        playlist = files.files;
+    if (files && files.length > 0) {
+        playlist = files;
         currentTrack = 0;
         loadTrack(currentTrack);
-        localStorage.setItem("folderPath", files.folderPath)
     }
 });
 

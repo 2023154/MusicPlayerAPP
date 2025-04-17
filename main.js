@@ -1,10 +1,8 @@
 const { app, BrowserWindow, dialog, ipcMain } = require('electron');
 const path = require('node:path');
 const mm = require('music-metadata');
-//const store = require('electron-store');
-
 const fs = require ('fs');
-//const storeInstance = new store(); 
+
 let win;
 
 const createWindow = () => {
@@ -34,8 +32,6 @@ app.whenReady().then(() => {
   });
 });
 
-
-
 //this will listen for folder selection request from renderer 
 ipcMain.handle('select-folder', async()=>{
 
@@ -44,11 +40,7 @@ ipcMain.handle('select-folder', async()=>{
   });
 
   if (result.canceled) return null;
-  
   const folderPath = result.filePaths[0];
-  
-
-  
 
   //reading MP3 files from  the selected folder
   const files = fs.readdirSync(folderPath)
@@ -59,28 +51,8 @@ ipcMain.handle('select-folder', async()=>{
 
       }));
 
-      const filesAndPath = {files, folderPath}
-      return filesAndPath;
-      
-})
-
-
-//get saved folder function
-
-ipcMain.handle("get-files-from-path", async (_, folderPath) => {
-  try {
-      const files = fs.readdirSync(folderPath)
-          .filter(file => file.endsWith('.mp3') || file.endsWith('.wav'))
-          .map(file => ({
-              title: file.replace(/\.[^/.]+$/, ""),
-              src: path.join(folderPath, file)
-          }));
       return files;
-  } catch (error) {
-      console.error("Error reading files from folder:", error);
-      return [];
-  }
-});
+})
 
 // Quit when all windows are closed (except on macOS)
 app.on('window-all-closed', () => {
