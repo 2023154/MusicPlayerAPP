@@ -6,3 +6,4 @@ contextBridge.exposeInMainWorld("electron", {
     getFilesFromPath: (folderPath) => ipcRenderer.invoke("get-files-from-path", folderPath)
 });
 
+

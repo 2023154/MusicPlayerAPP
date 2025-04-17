@@ -162,6 +162,8 @@ document.addEventListener("DOMContentLoaded",()=>{
 }
 );
 
+
+
 const menuButton = document.getElementById ("menuIcon");
 const menuOptions = document.getElementById ("menuOptions");
 

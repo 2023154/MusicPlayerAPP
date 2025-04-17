@@ -82,6 +82,7 @@ ipcMain.handle("get-files-from-path", async (_, folderPath) => {
   }
 });
 
+
 // Quit when all windows are closed (except on macOS)
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
