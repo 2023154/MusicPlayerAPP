@@ -21,6 +21,22 @@ const createWindow = () => {
   win.loadFile('app.html');
 };
 
+// get files from path function
+ipcMain.handle("get-files-from-path", async (_, folderPath) => {
+  try {
+      const files = fs.readdirSync(folderPath)
+          .filter(file => file.endsWith('.mp3') || file.endsWith('.wav'))
+          .map(file => ({
+              title: file.replace(/\.[^/.]+$/, ""),
+              src: path.join(folderPath, file)
+          }));
+      return files;
+  } catch (error) {
+      console.error("Error reading files from folder:", error);
+      return [];
+  }
+});
+
 // When Electron is ready, create the window
 app.whenReady().then(() => {
   createWindow();
@@ -40,7 +56,11 @@ ipcMain.handle('select-folder', async()=>{
   });
 
   if (result.canceled) return null;
+  
   const folderPath = result.filePaths[0];
+  
+
+  
 
   //reading MP3 files from  the selected folder
   const files = fs.readdirSync(folderPath)
@@ -51,8 +71,11 @@ ipcMain.handle('select-folder', async()=>{
 
       }));
 
-      return files;
+      const filesAndPath = {files, folderPath}
+      return filesAndPath;
+      
 })
+
 
 // Quit when all windows are closed (except on macOS)
 app.on('window-all-closed', () => {
