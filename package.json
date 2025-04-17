@@ -10,7 +10,7 @@
   "author": "Marcos Oliveira, Renan Castilhos, Ueslei Monteiro, Wanderson L. Ohenes",
   "license": "Free",
   "devDependencies": {
-    "electron": "^35.0.3"
+    "electron": "^35.1.5"
   },
   "dependencies": {
     "music-metadata": "^11.0.2"
