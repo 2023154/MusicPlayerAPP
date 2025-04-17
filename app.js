@@ -15,6 +15,20 @@ const selectFolderButton = document.getElementById("selectFolder");
 let playlist = [];
 let currentTrack = 0;
 
+
+//function to access electron memory and check if there is a folder saved there
+
+document.addEventListener("DOMContentLoaded", () => {
+    const files = window.electron.getSavedFolder();
+
+    if (files && files.length > 0) {
+        playlist = files;
+        currentTrack = 0;
+        loadTrack(currentTrack);
+    }
+
+})
+
     
 //function to load and play a track
 
