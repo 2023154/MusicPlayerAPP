@@ -1,9 +1,10 @@
 const { app, BrowserWindow, dialog, ipcMain } = require('electron');
 const path = require('node:path');
 const mm = require('music-metadata');
-const Store = require('electron-store');
-const fs = require ('fs');
+//const store = require('electron-store');
 
+const fs = require ('fs');
+//const storeInstance = new store(); 
 let win;
 
 const createWindow = () => {
@@ -45,7 +46,7 @@ ipcMain.handle('select-folder', async()=>{
   if (result.canceled) return null;
   
   const folderPath = result.filePaths[0];
-  store.set("folderPath", folderPath);
+  
 
   
 
@@ -58,28 +59,28 @@ ipcMain.handle('select-folder', async()=>{
 
       }));
 
-      return files;
+      const filesAndPath = {files, folderPath}
+      return filesAndPath;
+      
 })
 
 
 //get saved folder function
 
-ipcMain.handle('get-saved-folder', ()=>{
-
-const folderPath = store.get("folderPath");
-if(!folderPath) return null;
-
-  const files = fs.readdirSync(folderPath)
-  .filter(file => file.endsWith('.mp3') || file.endsWith('.wav'))// this filters files for only mp3
-  .map(file => ({
-    title: file.replace(/\.[^/.]+$/, ""),
-    src: path.join(folderPath, file)
-
-  }));
-
-  return files;
-
-})
+ipcMain.handle("get-files-from-path", async (_, folderPath) => {
+  try {
+      const files = fs.readdirSync(folderPath)
+          .filter(file => file.endsWith('.mp3') || file.endsWith('.wav'))
+          .map(file => ({
+              title: file.replace(/\.[^/.]+$/, ""),
+              src: path.join(folderPath, file)
+          }));
+      return files;
+  } catch (error) {
+      console.error("Error reading files from folder:", error);
+      return [];
+  }
+});
 
 // Quit when all windows are closed (except on macOS)
 app.on('window-all-closed', () => {

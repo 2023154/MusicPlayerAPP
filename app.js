@@ -18,13 +18,17 @@ let currentTrack = 0;
 
 //function to access electron memory and check if there is a folder saved there
 
-document.addEventListener("DOMContentLoaded", () => {
-    const files = window.electron.getSavedFolder();
+document.addEventListener("DOMContentLoaded", async() => {
+    const folderPath = localStorage.getItem("folderPath");
 
-    if (files && files.length > 0) {
-        playlist = files;
-        currentTrack = 0;
-        loadTrack(currentTrack);
+    if(folderPath){
+
+        const files = await window.electron.getFilesFromPath(folderPath);
+        if (files && files.length > 0) {
+            playlist = files;
+            currentTrack = 0;
+             await loadTrack(currentTrack);
+        }
     }
 
 })
@@ -93,10 +97,11 @@ prevMusic.addEventListener("click", async () => {
 selectFolderButton.addEventListener("click", async () => {
     const files = await window.electron.selectFolder();
 
-    if (files && files.length > 0) {
-        playlist = files;
+    if (files.files && files.files.length > 0) {
+        playlist = files.files;
         currentTrack = 0;
         loadTrack(currentTrack);
+        localStorage.setItem("folderPath", files.folderPath)
     }
 });
 
