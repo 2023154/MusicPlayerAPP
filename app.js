@@ -153,8 +153,53 @@ document.addEventListener("DOMContentLoaded",()=>{
     if(savedTheme==="light"){
         document.body.classList.add("light-mode");
     }
+
+});
+
+function connectVisualizer() {
+    // if (window.audioSource) {
+    //     window.audioSource.disconnect();
+    // }
+
+    const audioCtx = window.audioCtx || new AudioContext();
+    const analyser = audioCtx.createAnalyser();
+    const source = audioCtx.createMediaElementSource(audio);
+
+    source.connect(analyser);
+    analyser.connect(audioCtx.destination);
+
+    analyser.fftSize = 128;
+
+    const bufferLength = analyser.frequencyBinCount;
+    const dataArray = new Uint8Array(bufferLength);
+    const canvas = document.getElementById('visualizer');
+    const ctx = canvas.getContext('2d');
+
+    const WIDTH = canvas.width;
+    const HEIGHT = canvas.height;
+    const barWidth = WIDTH / bufferLength;
+
+    function draw() {
+        requestAnimationFrame(draw);
+        analyser.getByteFrequencyData(dataArray);
+        ctx.clearRect(0, 0, WIDTH, HEIGHT);
+
+        for (let i = 0; i < bufferLength; i++) {
+            const barHeight = dataArray[i] / 2;
+            const x = i * barWidth;
+            ctx.fillStyle = `hsl(${i * 10}, 100%, 50%)`;
+            ctx.fillRect(x, HEIGHT - barHeight, barWidth - 1, barHeight);
+
+        }
+    }
+
+    draw();
+
+    window.audioCtx = audioCtx;
+    window.audioSource = source;
+
 }
-);
+;
 
 const menuButton = document.getElementById ("menuIcon");
 const menuOptions = document.getElementById ("menuOptions");
