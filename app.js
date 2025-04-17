@@ -223,3 +223,12 @@ function connectVisualizer() {// criei uma funcao que eu vou me connectar com o 
     window.audioCtx = audioCtx;
     window.audioSource = source;
 }
+window.electron.onShortcut((action) => {
+    if (action === "playPause") {
+        pauseMusic.click(); // simulate click
+    } else if (action === "next") {
+        nextMusic.click();
+    } else if (action === "previous") {
+        prevMusic.click();
+    }
+});

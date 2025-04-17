@@ -1,9 +1,14 @@
-const { app, BrowserWindow, dialog, ipcMain } = require('electron');
+
+const { app, BrowserWindow, dialog, ipcMain, globalShortcut, Tray, Menu } = require('electron');
 const path = require('node:path');
 const mm = require('music-metadata');
 const fs = require ('fs');
+app.commandLine.appendSwitch('disable-gpu-shader-disk-cache');
+
 
 let win;
+let tray;
+
 
 const createWindow = () => {
    win = new BrowserWindow({
@@ -17,13 +22,43 @@ const createWindow = () => {
       nodeIntegration: false
   }
   });
-
+  win.on("close", (event) => {
+    event.preventDefault();
+    win.hide(); // Hides the window instead of quitting
+  });
+  
   win.loadFile('app.html');
 };
+
 
 // When Electron is ready, create the window
 app.whenReady().then(() => {
   createWindow();
+
+  // System Tray Icon
+tray = new Tray(path.join(__dirname, 'music/appicon.ico'));
+const trayMenu = Menu.buildFromTemplate([
+  { label: 'Show Player', click: () => win.show() },
+  { label: 'Quit', click: () => {
+      globalShortcut.unregisterAll();
+      app.quit();
+    }
+  }
+]);
+tray.setToolTip('Music Player');
+tray.setContextMenu(trayMenu);
+
+// Global Media Shortcuts
+globalShortcut.register('MediaPlayPause', () => {
+  win.webContents.send('shortcut', 'playPause');
+});
+globalShortcut.register('MediaNextTrack', () => {
+  win.webContents.send('shortcut', 'next');
+});
+globalShortcut.register('MediaPreviousTrack', () => {
+  win.webContents.send('shortcut', 'previous');
+});
+
 
   app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) {
@@ -56,10 +91,12 @@ ipcMain.handle('select-folder', async()=>{
 
 // Quit when all windows are closed (except on macOS)
 app.on('window-all-closed', () => {
+  globalShortcut.unregisterAll(); // Clean up
   if (process.platform !== 'darwin') {
     app.quit();
   }
 });
+
 
 
 //extracting music metadata

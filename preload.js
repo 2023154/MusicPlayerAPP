@@ -2,6 +2,8 @@ const { contextBridge, ipcRenderer } = require("electron");
 
 contextBridge.exposeInMainWorld("electron", {
     getMetadata: (filePath) => ipcRenderer.invoke("get-metadata", filePath),
-    selectFolder: () => ipcRenderer.invoke("select-folder")
+    selectFolder: () => ipcRenderer.invoke("select-folder"),
+    onShortcut: (callback) => ipcRenderer.on('shortcut', (event, action) => callback(action))
+
 });
 
